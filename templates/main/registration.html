@@ -1,0 +1,58 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<div class="container">
+	{% if messages %}
+		{% for msg in messages %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Hey !</strong> {{msg}}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<div class="row py-5">
+		<div class="card col-sm-5 mx-auto" style="border-color: #92be4d;">
+			<h3 class="text-center border-bottom pb-3">Register</h3>
+			<div class="card-body">
+				<form action="/register/" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="mb-3">
+						<label for="uimg">User Image</label>
+						<input type="file" class="form-control" name="uimg" placeholder="Enter User Image">
+					</div>
+					<div class="mb-3">
+						<label for="uname">User Name</label>
+						<input type="text" class="form-control" name="uname" placeholder="Enter User Name">
+					</div>
+					<div class="mb-3">
+						<label for="uemail">User Email</label>
+						<input type="email" class="form-control" name="uemail" placeholder="Enter User Email">
+					</div>
+					<div class="mb-3">
+						<label for="umob">User Mobile</label>
+						<input type="text" class="form-control" name="umob" placeholder="Enter User Mobile">
+					</div>
+
+					<div class="mb-3">
+						<label for="upass">User Password</label>
+						<input type="password" class="form-control" name="upass" placeholder="Enter User Password">
+					</div>
+
+					<div class="mb-3">
+						<label for="ucpass">Confirm Password</label>
+						<input type="password" class="form-control" name="ucpass" placeholder="Confirm Password">
+					</div>
+
+					<div class="mb-3 mx-auto">
+						<button type="submit" class="btn text-light" style="background-color: #92be4d;">Submit</button>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

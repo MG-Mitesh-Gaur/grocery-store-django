@@ -1,0 +1,6 @@
+{
+    "python.formatting.provider": "none",
+    "python.formatting.autopep8Path": "",
+    "python.formatting.blackPath": "",
+    "python.formatting.yapfPath": ""
+}

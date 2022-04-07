@@ -1,0 +1,36 @@
+{% extends './base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+			<li class="breadcrumb-item"><a href="/allcategories/" class="text-decoration-none">Categories</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{ catName }}</li>
+		</ol>
+	</nav>
+	<h1 class="text-center">{{ catName }}</h1>
+	<div class="cards row pt-3 pb-5">
+		<div class="col-sm-8 mx-auto">
+			<table class="table">
+				<thead>
+					<th scope="col">Image</th>
+					<th scope="col">Name</th>
+					<th scope="col">Price</th>
+				</thead>
+				<tbody>
+					{% if mydata %}
+					{% for row in mydata %}
+					<tr>
+						<td><img src="/media/{{ row.image }}" width="50" height="50" alt=""></td>
+						<td>{{ row.name }}</td>
+						<td>{{ row.price }}</td>
+					</tr>
+					{% endfor %}
+					{% endif %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock %}

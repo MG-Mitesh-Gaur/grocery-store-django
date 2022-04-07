@@ -1,0 +1,63 @@
+{% extends './base.html' %}
+
+{% block content %}
+<section style="background-color: rgb(255, 61, 61);">
+	<div class="col-md-9 ms-auto col-lg-10 px-3 py-2">
+		<h2 class="text-light">Dashboard</h2>
+		<h4 class="text-light">Hi, {% if 'admin' in request.session %} {{request.session.admin}} {% endif %}</h4>
+	</div>
+</section>
+<section style="margin-top: -8px;">
+	<div class="container-fluid pt-5" style="min-height: 100vh; background-color: #eee;" id="productDash">
+		<main class="col-md-9 ms-auto col-lg-10 px-2">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="card text-light" id="productDash1">
+						<div class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between">
+							<h3>Total Products</h3>
+							<h1>
+								{{ productCount }}
+							</h1>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6 my-3 my-md-0">
+					<div class="card text-light" id="productDash2">
+						<div class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between">
+							<h3>Total Orders</h3>
+							<h1>
+								{{ orderCount }}
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row my-3">
+				<div class="col-sm-6">
+					<div class="card text-light" id="productDash3">
+						<div class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between">
+							<h3>Total Categories</h3>
+							<h1>
+								{{ categoryCount }}
+							</h1>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="card text-light" id="productDash4">
+						<div class="card-body d-flex flex-column flex-md-row align-items-center justify-content-between">
+							<h3>Total Users</h3>
+							<h1>
+								{{ userCount }}
+							</h1>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+	</div>
+</section>
+
+{% endblock %}

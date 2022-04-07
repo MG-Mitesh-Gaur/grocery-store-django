@@ -1,0 +1,134 @@
+body.overflow-n {
+  overflow-y: hidden;
+}
+
+.color-primary {
+  background-image: linear-gradient(45deg, rgb(245, 61, 61, .5), rgb(245, 61, 61, 1)),
+    url('https://www.lalpathlabs.com/blog/wp-content/uploads/2019/01/Fruits-and-Vegetables.jpg');
+  background-size: cover;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  /* rtl:raw:
+  right: 0;
+  */
+  bottom: 0;
+  /* rtl:remove */
+  left: 0;
+  /* padding: 48px 0 0; Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+  transform: translateX(-100%);
+  transition: transform 700ms;
+}
+
+.sidebar.show {
+  transform: none;
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  height: calc(100vh - 48px);
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* Scrollable contents if viewport is shorter than content. */
+}
+
+.sidebar .nav-item {
+  padding-block: 8px;
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: white;
+  margin-inline: 8px;
+}
+
+#logOut-btn {
+  background: rgb(212, 25, 25);
+  margin-inline: 8px;
+}
+
+.sidebar .nav-link span {
+  margin-right: 16px;
+}
+
+.sidebar .nav-link.active {
+  background: white;
+  color: #f53d3d;
+  border-radius: 4px;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+  color: inherit;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
+}
+
+@media screen and (min-width: 48rem) {
+  .sidebar {
+    transform: none;
+  }
+}
+
+/* .navbar .form-control {
+  padding: .75rem 1rem;
+  border-width: 0;
+  border-radius: 0;
+}
+
+.form-control-dark {
+  color: #fff;
+  background-color: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .1);
+}
+
+.form-control-dark:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+} */
+
+#productDash .card {
+  background-size: cover;
+  height: 200px;
+}
+
+.card#productDash1 {
+  background-image: linear-gradient(0deg,rgba(255, 61, 61,.5),rgba(255, 61, 61,.5)), url('https://www.nestle-family.com/sites/site.prod1.nestle-family.com/files/2019-05/nestle-article00041%20%281%29.jpg');
+  background-position: bottom;
+}
+
+.card#productDash2 {
+  background-image: linear-gradient(0deg,rgba(255, 61, 61,.5),rgba(255, 61, 61,.5)), url('../image/veg-cart.jpg');
+  background-position: top;
+}
+
+.card#productDash3 {
+  background-image: linear-gradient(0deg,rgba(255, 61, 61,.5),rgba(255, 61, 61,.5)), url('https://image.shutterstock.com/image-photo/colored-wooden-blocks-diagonally-aligned-260nw-1027385548.jpg');
+  background-position: center;
+}
+
+.card#productDash4 {
+  background-image: linear-gradient(0deg,rgba(255, 61, 61,.5),rgba(255, 61, 61,.5)), url('https://img.freepik.com/free-vector/decorative-social-media-business-blog-users-profile-avatar-trendy-hairstyle-design-icons-collection-isolated-flat-vector-illustration_1284-2399.jpg?size=338&ext=jpg');
+  background-position: center;
+}

@@ -1,0 +1,126 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+	<!-- FONTAWESOME CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+	<title>{% block title %} Home Page {% endblock%}</title>
+</head>
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 5px solid #92be4d !important;">
+		<div class="container">
+			<a class="navbar-brand fw-bold" href="/">FoodMarket</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+				data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				{% with request.resolver_match.url_name as url_name %}
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item">
+						<a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page"
+							href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if url_name == 'allcategories' %}active{% endif %}"
+							href="/allcategories">Categories</a>
+					</li>
+					{% if 'username' in request.session %}
+					<li class="nav-item">
+						<a class="nav-link" href="/">{{request.session.username}}</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/userlogout">Logout</a>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a class="nav-link {% if url_name == 'log' %}active{% endif %}" href="/log">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link {% if url_name == 'registration' %}active{% endif %}" href="/reg">Register</a>
+					</li>
+					{% endif %}
+					<li class="nav-item">
+						<a class="nav-link" href="/cart/">cart</a>
+					</li>
+				</ul>
+				{% endwith %}
+			</div>
+		</div>
+	</nav>
+
+	{% block content %}
+	{% endblock %}
+
+
+	<section style="background-color: #92be4d;">
+		<div class="container">
+			<footer class="py-5">
+				<div class="row">
+					<div class="col-2">
+						<h5 class="fw-bold text-uppercase">Section</h5>
+						<ul class="nav flex-column">
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">Home</a></li>
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">Features</a></li>
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">Pricing</a></li>
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">FAQs</a></li>
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">About</a></li>
+						</ul>
+					</div>
+
+					<div class="col-2">
+						<h5 class="fw-bold text-uppercase">Section</h5>
+						<ul class="nav flex-column">
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">Home</a></li>
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">Features</a></li>
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">Pricing</a></li>
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">FAQs</a></li>
+							<li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-dark">About</a></li>
+						</ul>
+					</div>
+
+					<div class="col-6 offset-1">
+						<form>
+							<h5>Subscribe to our newsletter</h5>
+							<p>Monthly digest of whats new and exciting from us.</p>
+							<div class="d-flex w-100 gap-2">
+								<label for="newsletter1" class="visually-hidden">Email address</label>
+								<input id="newsletter1" type="email" class="form-control" placeholder="Email address">
+								<button class="btn btn-primary" type="button">Subscribe</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="d-flex justify-content-between py-4 my-4 border-top">
+					<p>&copy; 2021 Company, Inc. All rights reserved.</p>
+					<ul class="list-unstyled d-flex">
+						<li class="ms-3"><a class="link-dark" href="#"><span class="fab fa-twitter fa-2x"></span></a></li>
+						<li class="ms-3"><a class="link-dark" href="#"><span class="fab fa-instagram fa-2x"></span></a></li>
+						<li class="ms-3"><a class="link-dark" href="#"><span class="fab fa-facebook fa-2x"></span></a></li>
+					</ul>
+				</div>
+			</footer>
+		</div>
+	</section>
+
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>
+</body>
+
+</html>

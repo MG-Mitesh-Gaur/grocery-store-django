@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+	<h1 class="text-center">Add To Cart</h1>
+	<div class="cards row pt-5 pb-1">
+		{% if mydata %}
+		{% for row in mydata %}
+		<div class="col-sm-6 mx-auto">
+			<form action="/addToCartAction/" method="post" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="mb-1">
+					<img src="/media/{{ row.image }}" alt="" width="100" height="100">
+					<input type="hidden" name="cartProductImg" value="{{ row.image }}" class="form-control">
+				</div>
+				<div class="mb-3">
+					<label for="cartProductName" class="mb-1">Name</label>
+					<input type="text" name="cartProductName" readonly value="{{ row.name }}" class="form-control">
+				</div>
+	
+				<div class="mb-3">
+					<label for="cartProductPrice" class="mb-1">Price</label>
+					<input type="text" name="cartProductPrice" readonly value="{{ row.price }}" class="form-control">
+				</div>
+
+				<div class="mb-3">
+					<label for="cartProductQuantity" class="mb-1">Price</label>
+					<input type="number" name="cartProductQuantity" class="form-control" value="1" min="1" placeholder="1">
+				</div>
+
+				<div class="mb-3">
+					<button type="submit" class="btn btn-primary">Ok</button>
+				</div>
+			</form>			
+		</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

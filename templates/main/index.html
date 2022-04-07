@@ -1,0 +1,82 @@
+{% extends './base.html' %}
+
+
+{% load static %}
+
+
+{% block content %}
+
+<div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+	<div class="carousel-indicators">
+		<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+			aria-label="Slide 1"></button>
+		<button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+	</div>
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img src="{% static 'image/fruits_for_slide.jpg' %}"
+				alt="" width="100%" height="500px" style="aspect-ratio: 16 / 9; object-fit: cover;">
+
+			<!-- <div class="container">
+				<div class="carousel-caption text-start">
+					<h1>Example headline.</h1>
+					<p>Some representative placeholder content for the first slide of the carousel.</p>
+					<p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+				</div>
+			</div> -->
+		</div>
+		<div class="carousel-item">
+			<img src="{% static 'image/vegetables_for_slide.jpg' %}"
+				alt="" width="100%" height="500px" style="aspect-ratio: 16 / 9; object-fit: cover;">
+		</div>
+	</div>
+	<button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Previous</span>
+	</button>
+	<button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+		<span class="visually-hidden">Next</span>
+	</button>
+</div>
+<div class="container mt-5">
+	{% if 'username' in request.session %}
+		{% for msg in messages %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+			<strong>Hey !</strong> {{msg}}
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		{% endfor %}
+	{% endif %}
+	<div class="cards row py-5 gy-5">
+		{% if mydata %}
+			{% for row in mydata %}
+				<div class="col-sm-3">
+					<div class="card" style="border-color: #92be4d;">
+						<img src="/media/{{ row.image }}" alt="" width="200px" height="250px" style="aspect-ratio: 4 / 3;border-bottom: 4px solid #92be4d;object-fit: cover;" class="mx-auto card-img-top">
+
+						<div class="card-body">
+							<div class="header text-center">
+								<h5>
+									<a href="/productDetails/{{ row.id }}" class="text-decoration-none text-dark">
+										{{ row.name }}
+									</a>
+								</h5>
+							</div>
+							<div class="body text-center">
+								<p class="mb-1">Quantity : {{ row.stock }}</p>
+								<p class="mb-1">Price : ₹{{ row.price }}</p>
+								<p><a href="/allcategories/" class="text-decoration-none text-dark">Category : {{ row.cate }}</a></p>
+							</div>
+							<div class="cta text-center">
+								<a href="javascript:void(0)" class="btn text-light" style="background-color: #92be4d;">Buy Now</a>
+								<a href="/addToCart/{{ row.id }}" class="btn text-light" style="background-color: #92be4d;">Add to cart</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

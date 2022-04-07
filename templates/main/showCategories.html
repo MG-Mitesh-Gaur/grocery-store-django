@@ -1,0 +1,32 @@
+{% extends './base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+	<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/" class="text-decoration-none">Home</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Categories</li>
+		</ol>
+	</nav>
+	<h1>Categories</h1>
+	<div class="cards row py-5">
+		{% if mydata %}
+		{% for row in mydata %}
+		<div class="col-sm-3">
+			<div class="card" style="background-color: #92be4d;border-color: #92be4d;">
+				<img src="/media/{{ row.catImage }}" alt="" width="200px" height="250px"
+					style="aspect-ratio: 4 / 3;border-bottom: 4px solid #92be4d;object-fit: cover;"
+					class="mx-auto card-img-top">
+
+				<div class="card-body">
+					<div class="header text-center">
+						<h5><a href="/allcategories/category/{{ row.cat_id }}" class="text-light text-decoration-none">{{ row.catName }}</a></h5>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

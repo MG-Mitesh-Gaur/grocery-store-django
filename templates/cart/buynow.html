@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+	{% if messages %}
+		{% for msg in messages %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Hey !</strong> {{msg}}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endif %}
+	<h4 class="text-center">Enter Shipping address for these items</h4>
+	{% if 'cart' in request.session %}
+
+	<div class="card col-sm-5 mx-auto my-4">
+		<table class="table table-borderless table-striped">
+			<tbody>
+				<thead>
+					<th scope="col">Item</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Price</th>
+				</thead>
+				{% for cart in request.session.cart %}
+				<tr>
+					<td class="fw-normal">{{ cart.p_name }}</td>
+					<td class="ms-4">{{ cart.p_quantity }}</td>
+					<td class="ms-4">₹{{ cart.p_price }}/-</td>
+				</tr>
+				{% endfor%}
+			</tbody>
+		</table>
+
+		<div class="card-footer">
+			<p class="lead fw-bolder">Total Price : {{ request.session.totalPrice }}</p>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="my-1 col-sm-6 mx-auto">
+			<form action="/submitfinal/" method="post">
+				{% csrf_token %}
+				<label for="shipAddress">Shipping Address</label>
+				<input type="text" placeholder="Enter shipping address" class="form-control" name="shipAddress">
+
+				<button type="submit" class="btn btn-success mt-4">Place Order</button>
+			</form>
+		</div>
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

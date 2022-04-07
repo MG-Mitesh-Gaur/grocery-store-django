@@ -1,0 +1,42 @@
+{% extends './base.html' %}
+
+{% block content %}
+
+<div class="container">
+	{% if messages %}
+		{% for msg in messages %}
+			<div class="alert alert-warning alert-dismissible fade show" role="alert">
+				<strong>Hey !</strong> {{msg}}
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>		
+		{% endfor %}
+	{% endif %}
+	<div class="row py-5">
+		<div class="card col-sm-5 mx-auto" style="border-color: #92be4d;">
+			<h3 class="text-center border-bottom pb-3">Login</h3>
+			<div class="card-body">
+				<form action="/login/" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					<div class="mb-3">
+						<label for="xemail">User Email</label>
+						<input type="email" class="form-control" name="xemail" placeholder="Enter User Email">
+					</div>
+
+					<div class="mb-3">
+						<label for="xpass">User Password</label>
+						<input type="password" class="form-control" name="xpass" placeholder="Enter User Password">
+					</div>
+
+					<div class="mb-3">
+						<button type="submit" class="btn text-light" style="background-color: #92be4d;">Submit</button>
+						
+						<a class="ms-3" href="/forgotpassword/">Forgot Password?</a>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

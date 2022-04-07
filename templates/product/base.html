@@ -1,0 +1,108 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+	<title>{% block title %} Product Home Page {% endblock %}</title>
+</head>
+
+<body>
+	<button class="btn btn-primary d-block d-md-none" type="button" id="menuBtn">
+		<i class="fas fa-bars"></i>
+	</button>
+	<nav id="sidebarMenu" class="col-sm-12 col-md-3 col-lg-2 d-block color-primary sidebar collapse"
+		style="z-index: 1000;">
+		<div class="position-sticky pt-3">
+			<h5 class="px-3 text-white">Grocery Dashboard</h5>
+			<hr style="height: 2px; background-color: white;">
+			<div class="position-relative mb-5">
+				<button type="button" class="btn btn-primary position-absolute d-block d-md-none" id="closeBtn"
+					style="right: 10px;">X</button>
+			</div>
+
+			{% with request.resolver_match.url_name as url_name %}
+			<ul class="nav flex-column mt-5">
+				<li class="nav-item">
+					<a class="nav-link {% if url_name == 'home' %}active{% endif %}" aria-current="page"
+						href="/product/">
+						<span class="fas fa-home"></span>
+						Dashboard
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {% if url_name == 'allproducts' %}active{% endif %}"
+						href="/product/allproducts/">
+						<span class="fas fa-sitemap"></span>
+						Products
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {% if url_name == 'orders' %}active{% endif %}" href="/product/orders/">
+						<span class="fas fa-shopping-cart"></span>
+						Orders
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {% if url_name == 'categories' %}active{% endif %}" href="/product/categories/">
+						<span class="fas fa-list-alt"></span>
+						Categories
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link {% if url_name == 'users' %}active{% endif %}" href="/product/users/">
+						<span class="fas fa-users"></span>
+						Users
+					</a>
+				</li>
+			</ul>
+			{% endwith %}
+
+			<div class="d-grid mx-auto mt-5">
+				<a class="btn fw-bold text-white" href="/adminlogout/" id="logOut-btn">Logout</a>
+			</div>
+		</div>
+	</nav>
+
+
+
+	{% block content %}
+	{% endblock %}
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+	<script>
+		menuBtn.onclick = function () {
+			if (sidebarMenu.classList.contains("show")) {
+				sidebarMenu.classList.remove("show")
+				document.body.classList.remove("overflow-n");
+			} else {
+				sidebarMenu.classList.add("show")
+				document.body.classList.add("overflow-n");
+			}
+		}
+
+		closeBtn.onclick = function () {
+			sidebarMenu.classList.remove("show")
+			document.body.classList.remove("overflow-n");
+		}
+	</script>
+</body>
+
+</html>
+</body>
+
+</html>

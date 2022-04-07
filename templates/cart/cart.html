@@ -1,0 +1,60 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="container mt-3">
+	<h1 class="text-center">Cart</h1>
+
+	{% if 'cart' in request.session %}
+	<div class="text-end">
+		<a href="/undoLastEntry/" class="btn btn-primary"><span class="fas fa-undo"></span></a>
+		<a href="/clearCart/" class="btn btn-danger"><span class="fas fa-trash"></span></a>
+	</div>
+
+	<table class="table">
+		<thead>
+			<th scope="col">ID</th>
+			<th scope="col">Image</th>
+			<th scope="col">Product Name</th>
+			<th scope="col">Quantity</th>
+			<th scope="col">Price</th>
+			<th scope="col">Delete</th>
+		</thead>
+
+		<tbody>
+			{% for cart in request.session.cart %}
+			<tr>
+				<td>{{ cart.cart_id }}</td>
+				<td><img src="/media/{{ cart.p_image }}" alt="" width="50" height="50"></td>
+				<td>{{ cart.p_name }}</td>
+				<td>{{ cart.p_quantity }}</td>
+				<td>{{ cart.p_price }}</td>
+				<td><a href="/delcartitem/{{cart.cart_id}}"><span class="fas fa-xmark text-danger"></span></a></td>
+			</tr>
+			{% endfor%}
+		</tbody>
+	</table>
+
+	{% else %}
+
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		<strong>You don't have any item in cart</strong>
+		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+	</div>
+
+	{% endif %}
+
+	{% if 'totalPrice' in request.session %}
+	<div class="text-end">
+		<h3 class="fw-light">Total Price : <span class="text-success fw-bold">{{ request.session.totalPrice }}</span>
+		</h3>
+	</div>
+	{% endif %}
+
+	{% if 'totalPrice' in request.session and request.session.totalPrice > 0.00 %}
+	<div class="mb-3">
+		<a href="/buyNow/" class="btn btn-success">Buy Now</a>
+	</div>
+	<a href="/endsession/" class="btn btn-danger mb-3">End cart session</a>
+	{% endif %}
+</div>
+{% endblock %}

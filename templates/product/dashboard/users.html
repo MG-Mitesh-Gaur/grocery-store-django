@@ -1,0 +1,47 @@
+{% extends '../base.html' %}
+
+{% block content %}
+<section style="background-color: rgb(255, 61, 61);">
+	<div class="col-md-9 ms-auto col-lg-10 px-3 py-2">
+		<h2 class="text-light">Users</h2>
+	</div>
+</section>
+<section style="margin-top: -8px;">
+	<div class="container-fluid" style="min-height: 100vh; background-color: #eee;">
+		<main class="col-md-9 ms-auto col-lg-10 px-2">
+			<h5 class="fw-lighter pt-3 mb-4">Check all your users' details here</h5>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="card">
+						<div class="card-body">
+							<table class="table table-striped table-borderless">
+								<thead>
+									<th>Image</th>
+									<th>Name</th>
+									<th>Email</th>
+									<th>Mobile</th>
+								</thead>
+								<tbody>
+									{% if mydata %}
+										{% for row in mydata %}
+											<tr class="align-middle">
+												<td><img src="/media/{{ row.uimage}}" alt="" width="50" height="50"></td>
+												<td>{{ row.uname }}</td>
+												<td>{{ row.uemail }}</td>
+												<td>{{ row.umob }}</td>
+											</tr>
+										{% endfor %}
+									{% endif %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+	</div>
+</section>
+
+{% endblock %}
